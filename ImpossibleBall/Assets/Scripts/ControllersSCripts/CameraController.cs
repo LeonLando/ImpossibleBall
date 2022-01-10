@@ -6,6 +6,7 @@ using UnityEngine;
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private Transform _transformOfPlayer;
+        [SerializeField] private GameObject PlayerObj;
         [SerializeField] private float _turnSpeed = 4.0f;
         [SerializeField] private float _distance = -4f;
         [SerializeField] private float _height = 5f;
@@ -13,12 +14,18 @@ using UnityEngine;
 
         private void Awake()
         {
-            _transformOfPlayer = GameObject.FindWithTag("Player").transform;
+            _transformOfPlayer = PlayerObj.transform;
         }
 
         private void Start()
         {
             _offset = new Vector3(0, _height, _distance);
+        }
+
+
+        private void Update()
+        {
+            _transformOfPlayer = PlayerObj.transform;
         }
 
         private void LateUpdate()

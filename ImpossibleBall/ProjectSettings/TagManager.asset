@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Usable
+  - ChekPoint
   layers:
   - Default
   - TransparentFX
