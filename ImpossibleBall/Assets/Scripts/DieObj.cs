@@ -14,9 +14,9 @@ public class DieObj : MonoBehaviour
             PlayerContr = other.GetComponent<PlayerContoller>();
             PlayerContr.TakeDamage();
         }
-        else
-        {
-            Destroy(other.gameObject);
-        }
+        //else
+        //{
+        //    Destroy(other.gameObject);
+        //}
     }
 }

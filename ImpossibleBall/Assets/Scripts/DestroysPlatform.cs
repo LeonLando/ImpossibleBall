@@ -8,7 +8,10 @@ public class DestroysPlatform : MonoBehaviour
     [SerializeField] private float Time;
     private void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(Timer());
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(Timer());
+        }
     }
 
 
