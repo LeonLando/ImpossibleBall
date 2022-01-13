@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CanBeUp : MonoBehaviour
 {
-    public int CanUp;
-    public Vector3 Direction;
-    public float Speed;
+    public int _canUp;
+    [SerializeField] private Vector3 _direction;
+    [SerializeField] private float _speed;
     private void FixedUpdate()
     {
-        if (CanUp == 1)
+        if (_canUp == 1)
         {
-            transform.Translate(Direction.normalized * Speed);
+            transform.Translate(_direction.normalized * _speed);
         }
-        if (CanUp == 2)
+        if (_canUp == 2)
         {
-            transform.Translate(Direction.normalized * -Speed);
+            transform.Translate(_direction.normalized * -_speed);
         }
     }
 
@@ -23,7 +23,7 @@ public class CanBeUp : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            CanUp = 0;
+            _canUp = 0;
         }
     }
 

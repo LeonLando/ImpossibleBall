@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ChekPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject Partycle;
-    [SerializeField] private GameObject Obj;
+    [SerializeField] private GameObject _partycle;
+    [SerializeField] private GameObject _obj;
 
     public void Activated()
     {
-        Partycle.SetActive(true);
-        Destroy(Obj);
+        _partycle.SetActive(true);
+        Destroy(_obj);
     }
 
 }

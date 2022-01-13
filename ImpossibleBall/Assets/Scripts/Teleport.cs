@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    public string SelectTag;
-    public Transform Pos;
+    [SerializeField] private string _selectTag;
+    [SerializeField] private Transform _pos;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(SelectTag))
+        if (other.CompareTag(_selectTag))
         {
-            other.transform.position = Pos.position;
+            other.transform.position = _pos.position;
         }
     }
 

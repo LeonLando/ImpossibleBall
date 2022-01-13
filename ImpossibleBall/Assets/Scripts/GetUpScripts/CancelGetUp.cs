@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CancelGetUp : MonoBehaviour
 {
-    private GameObject Obj;
-    private ConstantForce ConForce;
-    private Rigidbody Rig;
+    private GameObject _obj;
+    private ConstantForce _conForce;
+    private Rigidbody _rig;
     private void OnTriggerEnter(Collider other)
     {
         //other.transform.Translate(Direction.normalized * Speed);
 
-        ConForce = other.GetComponent<ConstantForce>();
-        Rig = other.GetComponent<Rigidbody>();
-        Rig.constraints = RigidbodyConstraints.None;
-        Destroy(ConForce);
+        _conForce = other.GetComponent<ConstantForce>();
+        _rig = other.GetComponent<Rigidbody>();
+        _rig.constraints = RigidbodyConstraints.None;
+        Destroy(_conForce);
     }
 
     private void FixedUpdate()

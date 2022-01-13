@@ -6,17 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class DieObj : MonoBehaviour
 {
-    private PlayerContoller PlayerContr;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent<PlayerContoller>(out var _playerContr))
         {
-            PlayerContr = other.GetComponent<PlayerContoller>();
-            PlayerContr.TakeDamage();
+            _playerContr = other.GetComponent<PlayerContoller>();
+            _playerContr.TakeDamage();
         }
-        //else
-        //{
-        //    Destroy(other.gameObject);
-        //}
     }
 }

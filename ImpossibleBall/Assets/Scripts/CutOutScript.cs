@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CutOutScript : MonoBehaviour
 {
-    private Animator Anim;
-    [SerializeField] GameObject ActivateObj;
-    private Animator ActivateObjAnim;
+    [SerializeField] private GameObject _activateObj;
+    private Animator _anim;
+    private Animator _activateObjAnim;
     private void Awake()
     {
-        Anim = GetComponent<Animator>();
-        ActivateObjAnim = ActivateObj.GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
+        _activateObjAnim = _activateObj.GetComponent<Animator>();
     }
 
 
@@ -18,8 +18,8 @@ public class CutOutScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Anim.SetBool("IsOn", true);
-            ActivateObjAnim.SetBool("IsOn", true);
+            _anim.SetBool("IsOn", true);
+            _activateObjAnim.SetBool("IsOn", true);
         }
     }
 }

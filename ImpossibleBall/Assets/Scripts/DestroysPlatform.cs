@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DestroysPlatform : MonoBehaviour
 {
-    [SerializeField] private GameObject Obj;
-    [SerializeField] private float Time;
+    [SerializeField] private GameObject _obj;
+    [SerializeField] private float _time;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -17,7 +17,7 @@ public class DestroysPlatform : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(Time);
-        Destroy(Obj);
+        yield return new WaitForSeconds(_time);
+        Destroy(_obj);
     }
 }

@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e25fd55dc206764e873033b4f11ee2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivateObj: {fileID: 0}
+  _activateObj: {fileID: 0}
 --- !u!95 &2222303176208156564
 Animator:
   serializedVersion: 3
@@ -185,5 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c74b3496e953e48882813d9bc9846c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj: {fileID: 9067378485176896613}
-  Time: 1.5
+  _obj: {fileID: 5265433148192286209}
+  _time: 1.5

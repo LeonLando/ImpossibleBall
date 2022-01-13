@@ -10,51 +10,40 @@ namespace ImpossibleBall.Inputs
 
     public class PlayerContoller : MonoBehaviour
     {
-        public float JumpPower;
-        [SerializeField] private bool IsGrounded;
-        private Vector3 Movement;
-        private PlayerMovement PlayerMovement;
-        [SerializeField] private GameObject PlayerObj;
-        [SerializeField] private Vector3 ChekPointTransform;
-        private float Health = 3;
-        [SerializeField] private Text HealthText;
-
+        [SerializeField] private GameObject _playerObj;
+        [SerializeField] private Rigidbody _playerRig;
+        //[SerializeField] private Vector3 _chekPointTransform;
+        private Vector3 _movement;
+        private PlayerMovement _playerMovement;
+        private PlayerHealth _playerhp;
+        private PlayerChekPoint _playerChekPoint;
 
         private void Awake()
         {
-            ChekPointTransform = PlayerObj.transform.position;
-            PlayerMovement = GetComponent<PlayerMovement>();
-            JumpPower = 200;
-            IsGrounded = true;
+            _playerMovement = GetComponent<PlayerMovement>();
+            _playerhp = GetComponent<PlayerHealth>();
+            _playerChekPoint = GetComponent<PlayerChekPoint>();
+            _playerChekPoint.GetChekPointPosition(_playerObj.transform);
         }
-        void Update()
+        private void Update()
         {
-            float Horizontal = Input.GetAxis(GlobalStringVars.Horizontal_Axis);
-            float Vertical = Input.GetAxis(GlobalStringVars.Vertical_Axis);
-            Movement = new Vector3(Horizontal, 0, Vertical).normalized;
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)  //
-            {
-                IsGrounded = false;
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, JumpPower, 0));
-            }
+            float horizontal = Input.GetAxis(GlobalStringVars.Horizontal_Axis);
+            float vertical = Input.GetAxis(GlobalStringVars.Vertical_Axis);
+            _movement = new Vector3(horizontal, 0, vertical).normalized;
         }
 
         private void FixedUpdate()
         {
-            PlayerMovement.MoveCharacter(Movement);
+            _playerMovement.MoveCharacter(_movement);
         }
 
         
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Ground"))
-            {
-                IsGrounded = true;
-            }
             if (other.CompareTag("ChekPoint"))
             {
-                ChekPointTransform = other.transform.position;
+                _playerChekPoint.GetChekPointPosition(other.transform); 
                 Animator Anim = other.GetComponent<Animator>();
                 Anim.SetBool("IsActive", true);
             }
@@ -62,18 +51,19 @@ namespace ImpossibleBall.Inputs
 
         public void TakeDamage()
         {
+            _playerRig.isKinematic = true;
+            _playerhp.TakeDamage();
+            _playerRig.isKinematic = false;
+        }
 
-            if (Health > 0)
-            {
-                Health -= 1;
-                PlayerObj.transform.position = ChekPointTransform;
+        public void GoToChekPoint()
+        {
+            _playerChekPoint.GoToChekPoint(_playerObj.transform);
+        }
 
-            }
-            if (Health <= 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-            HealthText.text = Health.ToString();
+        public void ResetLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
